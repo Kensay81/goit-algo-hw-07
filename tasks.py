@@ -53,6 +53,21 @@ def min_value_node(node):
         current = current.left
     return current
 
+# Пошук максимального
+def max_value_node(node):
+    if not node:
+        return None
+    current = node
+    while current.right:
+        current = current.right
+    return current
+
+# Знаходження суми всіх значень
+def sum_values(node):
+    if not node:
+        return 0
+    return node.key + sum_values(node.left) + sum_values(node.right)
+
 def insert(root, key):
     if not root:
         return AVLNode(key)
@@ -146,3 +161,16 @@ for key in keys_to_delete:
     print("Видалено:", key)
     print("AVL-Дерево:")
     print(root)
+
+avl_tree = None
+avl_tree = insert(avl_tree, 10)
+avl_tree = insert(avl_tree, 20)
+avl_tree = insert(avl_tree, 30)
+avl_tree = insert(avl_tree, 25)
+avl_tree = insert(avl_tree, 12)
+avl_tree = insert(avl_tree, 22)
+avl_tree = insert(avl_tree, -1)
+
+print("Найбільше значення в AVL-дереві:", max_value_node(avl_tree).key)
+print("Найменше значення в AVL-дереві:", min_value_node(avl_tree).key)
+print("Сума всіх значень в AVL-дереві:", sum_values(avl_tree))
